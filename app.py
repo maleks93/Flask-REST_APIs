@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
 from flask_jwt import JWT, jwt_required
@@ -9,8 +11,8 @@ from resources.store import Store, StoreList
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' # data.db resides at root directory of project
-app.secret_key = 'jose'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db') # data.db resides at root directory of project
+app.secret_key = 'sangram'
 api = Api(app)
 
 
